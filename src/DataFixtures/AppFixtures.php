@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\ClassicalMusicComposer;
+use App\Entity\Tea;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -16,6 +17,11 @@ class AppFixtures extends Fixture
         $classical->setName('Classical Music');
         $classical->setSlug('classical-music');
         $manager->persist($classical);
+
+        $tea = new Category();
+        $tea->setName('Tea');
+        $tea->setSlug('tea');
+        $manager->persist($tea);
 
         $manager->flush();
 
@@ -34,6 +40,13 @@ class AppFixtures extends Fixture
         $mozart->setSlug('wolfgang-amadeus-mozart');
         $mozart->setCategory($classical);
         $manager->persist($mozart);
+
+        $earlGrey = new Tea();
+        $earlGrey->setName('Earl Grey');
+        $earlGrey->setType('black');
+        $earlGrey->setSlug('earl-grey');
+        $earlGrey->setCategory($tea);
+        $manager->persist($earlGrey);
 
         $manager->flush();
     }

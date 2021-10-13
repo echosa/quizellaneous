@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Entity\ClassicalMusicComposer;
 use App\Repository\CategoryRepository;
 use App\Repository\ClassicalMusicComposerRepository;
+use App\Repository\TeaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,22 +28,39 @@ class LearnController extends AbstractController
     /**
      * @Route("/learn/category/{slug}", name="learn_category")
      */
-    public function learnCategory(Category $category, ClassicalMusicComposerRepository $classicalMusicComposerRepository): Response
-    {
-        if ($category->getSlug() === 'classical-music') {
-            $subjects = $classicalMusicComposerRepository->findAll();
-        } else {
-            throw $this->createNotFoundException();
+    public function learnCategory(
+        Category $category,
+        ClassicalMusicComposerRepository $classicalMusicComposerRepository,
+        TeaRepository $teaRepository
+    ): Response {
+        switch ($category->getSlug()) {
+            case 'classical-music':
+                $subjects = $classicalMusicComposerRepository->findAll();
+                break;
+            case 'tea':
+                $subjects = $teaRepository->findAll();
+                break;
+            default:
+                throw $this->createNotFoundException();
         }
 
         return $this->render('learn_category.html.twig', ['category' => $category, 'subjects' => $subjects]);
     }
 
     /**
-     * @Route("/learn/{slug}", name="learn_composer")
+     * @Route("/learn/{slug}", name="learn_subject")
      */
-    public function learnComposer(ClassicalMusicComposer $composer): Response
-    {
-        return $this->render('learn_composer.html.twig', ['composer' => $composer]);
+    public function learnSubject(
+        string $slug,
+        ClassicalMusicComposerRepository $classicalMusicComposerRepository,
+        TeaRepository $teaRepository
+    ): Response {
+        if ($composer = $classicalMusicComposerRepository->findOneBy(['slug' => $slug])) {
+            return $this->render('learn_composer.html.twig', ['composer' => $composer]);
+        } elseif ($tea = $teaRepository->findOneBy(['slug' => $slug])) {
+            return $this->render('learn_tea.html.twig', ['tea' => $tea]);
+        } else {
+            throw $this->createNotFoundException();
+        }
     }
 }

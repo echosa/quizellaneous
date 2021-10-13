@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('learn_category', { 'slug': tea.category.slug }) }}">Back</a>
+
+    <h3>Learn about {{ tea.name }}!</h3>
+
+    <div>This is a {{ tea.type }} tea.</div>
+{% endblock %}
+
+{% block title %}
+    Quizellaneous - Learn Tea
+{% endblock %}

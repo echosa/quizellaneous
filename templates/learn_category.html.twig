@@ -6,7 +6,7 @@
     <h3>{{ category.name }}</h3>
 
     {% for subject in subjects %}
-        <div><a href="{{ path('learn_composer', { 'slug': subject.slug }) }}">{{ subject.name }}</a></div>
+        <div><a href="{{ path('learn_subject', { 'slug': subject.slug }) }}">{{ subject.name }}</a></div>
     {% endfor %}
 {% endblock %}
 
