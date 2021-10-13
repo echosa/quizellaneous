@@ -3,17 +3,7 @@
 {% block body %}
     <h3>Quiz Time!</h3>
 
-    {% set count = 0 %}
-    {% for question in questions %}
-        <div>{{ question.question }}</div>
-        {% set count = count + 1 %}
-        {% for choice in question.choices %}
-            <label>
-                <input type="radio" name="question{{ count }}" />
-                {{ choice }}
-            </label>
-        {% endfor %}
-    {% endfor %}
+    {{ form(form) }}
 {% endblock %}
 
 {% block title %}
