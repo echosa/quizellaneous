@@ -20,6 +20,6 @@ class QuizController extends AbstractController
         $questions = $questionsProvider->getQuestions();
         $form = $this->createForm(QuizType::class, null, ['questions' => $questions]);
 
-        return $this->render('quiz.html.twig', ['questions' => $questions, 'form' => $form->createView()]);
+        return $this->render('quiz.html.twig', ['form' => $form->createView()]);
     }
 }
