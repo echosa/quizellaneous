@@ -9,6 +9,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class AddClassicalMusicComposerCommand extends Command
@@ -28,28 +29,38 @@ class AddClassicalMusicComposerCommand extends Command
     {
         $this
             ->setHelp('Adds a classical music composer to the DB')
+            ->addOption(
+                'fill-with-test-data',
+                null,
+                InputOption::VALUE_NONE,
+                'Fill with default test data'
+            )
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        /*
-        $composer = new ClassicalMusicComposer();
-        $composer->setName('Johann Sebastian Bach');
-        $composer->setBirthDate(new DateTime('1685-03-31'));
-        $composer->setDeathDate(new DateTime('1750-07-28'));
-        $composer->setSlug('johann-sebastian-bach');
+        if ($input->getOption('fill-with-test-data')) {
+            $bach = new ClassicalMusicComposer();
+            $bach->setName('Johann Sebastian Bach');
+            $bach->setBirthDate(new DateTime('1685-03-31'));
+            $bach->setDeathDate(new DateTime('1750-07-28'));
+            $bach->setSlug('johann-sebastian-bach');
+            $this->entityManager->persist($bach);
 
-        $composer = new ClassicalMusicComposer();
-        $composer->setName('Wolfgang Amadeus Mozart');
-        $composer->setBirthDate(new DateTime('1756-01-27'));
-        $composer->setDeathDate(new DateTime('1791-12-05'));
-        $composer->setSlug('wolfgang-amadeus-mozart');
+            $mozart = new ClassicalMusicComposer();
+            $mozart->setName('Wolfgang Amadeus Mozart');
+            $mozart->setBirthDate(new DateTime('1756-01-27'));
+            $mozart->setDeathDate(new DateTime('1791-12-05'));
+            $mozart->setSlug('wolfgang-amadeus-mozart');
+            $this->entityManager->persist($mozart);
 
-        $this->entityManager->persist($composer);
-        $this->entityManager->flush();
-        */
+            $this->entityManager->flush();
+            $output->writeln('Added default data');
 
-        return Command::SUCCESS;
+            return Command::SUCCESS;
+        }
+
+        return Command::INVALID;
     }
 }
