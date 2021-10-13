@@ -8,13 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LearnController extends AbstractController
+class IndexController extends AbstractController
 {
     /**
-     * @Route("/learn", name="learn")
+     * @Route("/")
      */
-    public function learn(): Response
+    public function index(): Response
     {
-        return $this->render('learn.html.twig');
+        return $this->render('index.html.twig');
     }
 }
