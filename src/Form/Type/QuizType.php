@@ -15,7 +15,7 @@ class QuizType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $count = 1;
+        $count = 0;
 
         /** @var Question $question */
         foreach ($options['questions'] as $question) {

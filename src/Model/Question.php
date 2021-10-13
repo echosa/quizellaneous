@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-class Question implements QuestionInterface
+use Serializable;
+
+class Question implements QuestionInterface, Serializable
 {
     private string $question;
     private string $answer;
@@ -35,5 +37,23 @@ class Question implements QuestionInterface
         return $this->choices;
     }
 
+    public function serialize()
+    {
+        return serialize(
+            [
+                $this->question,
+                $this->answer,
+                json_encode($this->choices),
+            ]
+        );
+    }
 
+    public function unserialize($serialized)
+    {
+        $data = unserialize($serialized);
+        list($question, $answer, $choices) = $data;
+        $this->question = $question;
+        $this->answer = $answer;
+        $this->choices = json_decode($choices);
+    }
 }
