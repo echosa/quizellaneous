@@ -3,8 +3,8 @@
 {% block body %}
     <h3>Time to learn!</h3>
 
-    {% for composer in composers %}
-        <h4><a href="{{ path('learn_composer', { 'slug': composer.slug }) }}">{{ composer.name }}</a></h4>
+    {% for category in categories %}
+        <h4><a href="{{ path('learn_category', { 'slug': category.slug }) }}">{{ category.name }}</a></h4>
     {% endfor %}
 {% endblock %}
 

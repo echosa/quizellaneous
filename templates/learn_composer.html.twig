@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('learn') }}">Back</a>
+    <a href="{{ path('learn_category', { 'slug': composer.category.slug }) }}">Back</a>
+
     <h3>Learn about {{ composer.name }}!</h3>
 
     <div>{{ composer.birthDate|date('m-d-Y') }} - {{ composer.deathDate|date('m-d-Y') }}</div>
@@ -10,4 +11,3 @@
 {% block title %}
     Quizellaneous - Learn Composer
 {% endblock %}
-
