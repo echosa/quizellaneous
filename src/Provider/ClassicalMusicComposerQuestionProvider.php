@@ -25,14 +25,35 @@ class ClassicalMusicComposerQuestionProvider
             $questions[] = new Question(
                 sprintf('What year was %s born?', $composer->getName()),
                 $composer->getBirthDate()->format('Y'),
-                [
-                    (int) $composer->getBirthDate()->format('Y') - 1,
-                    (int) $composer->getBirthDate()->format('Y'),
-                    (int) $composer->getBirthDate()->format('Y') + 1,
-                    (int) $composer->getBirthDate()->format('Y') + 2,
-                ]
+                $this->generateNumericChoices((int) $composer->getBirthDate()->format('Y'))
+            );
+
+            $questions[] = new Question(
+                sprintf('What year did %s die?', $composer->getName()),
+                $composer->getDeathDate()->format('Y'),
+                $this->generateNumericChoices((int) $composer->getDeathDate()->format('Y'))
             );
         }
         return $questions;
+    }
+
+    private function generateNumericChoices(int $answer): array
+    {
+        $options = [];
+
+        for ($option = $answer - 10; $option <= $answer + 10; $option++) {
+            if ($option === $answer) {
+                continue;
+            }
+            $options[] = $option;
+        }
+
+        shuffle($options);
+
+        $choices = array_slice($options, 0, 3);
+        $choices[] = $answer;
+        shuffle($choices);
+
+        return $choices;
     }
 }
