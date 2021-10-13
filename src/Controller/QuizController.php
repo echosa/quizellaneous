@@ -45,4 +45,13 @@ class QuizController extends AbstractController
 
         return $this->render('quiz.html.twig', ['form' => $form->createView()]);
     }
+
+    /**
+     * @Route("/quiz/new", name="new_quiz")
+     */
+    public function new(RequestStack $requestStack): Response
+    {
+        $requestStack->getSession()->remove(self::QUIZ_SESSION_ID);
+        return $this->redirectToRoute('quiz');
+    }
 }

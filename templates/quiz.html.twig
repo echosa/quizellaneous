@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <a href="{{ path('new_quiz') }}">Start a new quiz</a>
+
     <h3>Quiz Time!</h3>
 
     {{ form(form) }}
