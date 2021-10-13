@@ -5,22 +5,23 @@ declare(strict_types=1);
 namespace App\Provider;
 
 use App\Model\Question;
+use App\Repository\ClassicalMusicComposerRepository;
 
 class ClassicalMusicComposerQuestionProvider
 {
-    private ClassicalMusicComposerProvider $classicalMusicComposerProvider;
+    private ClassicalMusicComposerRepository $classicalMusicComposerRepository;
 
     public function __construct(
-        ClassicalMusicComposerProvider $classicalMusicComposerProvider
+        ClassicalMusicComposerRepository $classicalMusicComposerRepository
     ) {
-        $this->classicalMusicComposerProvider = $classicalMusicComposerProvider;
+        $this->classicalMusicComposerRepository = $classicalMusicComposerRepository;
     }
 
     public function all(): array
     {
         $questions = [];
 
-        foreach ($this->classicalMusicComposerProvider->all() as $composer) {
+        foreach ($this->classicalMusicComposerRepository->findAll() as $composer) {
             $questions[] = new Question(
                 sprintf('What year was %s born?', $composer->getName()),
                 $composer->getBirthDate()->format('Y'),

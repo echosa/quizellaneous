@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Learn about a composer!
+    <a href="{{ path('learn') }}">Back</a>
+    <h3>Learn about {{ composer.name }}!</h3>
+
+    <div>{{ composer.birthDate|date('m-d-Y') }} - {{ composer.deathDate|date('m-d-Y') }}</div>
 {% endblock %}
 
 {% block title %}
