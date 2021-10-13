@@ -18,33 +18,4 @@ class ClassicalMusicComposerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, ClassicalMusicComposer::class);
     }
-
-    // /**
-    //  * @return ClassicalMusicComposer[] Returns an array of ClassicalMusicComposer objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?ClassicalMusicComposer
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
