@@ -2,6 +2,8 @@
 
 This is just a little personal hobby project for me to work on creating a Symfony application from scratch.
 
+This is not meant to be a high-traffic, crazy secure, production app. There will be likely be some hard-coded values, sub-optimal design, etc. The frontend/UI/UX will certainly not be top-notch (though I will try to improve it). The main point is to simply have a _working_ Symfony app. 
+
 ### Dev Set Up
 
 1. Clone the repository
