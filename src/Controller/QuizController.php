@@ -8,13 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class IndexController extends AbstractController
+class QuizController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/quiz", name="quiz")
      */
-    public function index(): Response
+    public function quiz(): Response
     {
-        return $this->render('index.html.twig');
+        return $this->render('quiz.html.twig');
     }
 }
