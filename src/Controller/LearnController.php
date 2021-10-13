@@ -20,4 +20,12 @@ class LearnController extends AbstractController
 
         return $this->render('learn.html.twig', ['composers' => $composers]);
     }
+
+    /**
+     * @Route("/learn/{composer}", name="learn_composer")
+     */
+    public function learnComposer(): Response
+    {
+        return $this->render('learn_composer.html.twig');
+    }
 }

@@ -6,7 +6,7 @@ namespace App\Model;
 
 use DateTime;
 
-class ClassicalMusicComposer implements PersonInterface
+class ClassicalMusicComposer implements PersonInterface, SlugInterface
 {
     private string $name;
     private DateTime $birthDate;
@@ -35,5 +35,10 @@ class ClassicalMusicComposer implements PersonInterface
     public function getDeathDate(): ?DateTime
     {
         return $this->deathDate;
+    }
+
+    public function getSlug(): string
+    {
+        return mb_strtolower(str_ireplace(' ', '-', $this->getName()));
     }
 }
