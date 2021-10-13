@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Time to learn!
+    <h3>Time to learn!</h3>
+
+    {% for composer in composers %}
+        <h4>{{ composer.name }}</h4>
+        <ul>
+            <li>{{ composer.birthDate|date('m/d/Y') }} - {{ composer.deathDate|date('m/d/Y') }}</li>
+        </ul>
+    {% endfor %}
 {% endblock %}
 
 {% block title %}
