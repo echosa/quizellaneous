@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LearnController
+class LearnController extends AbstractController
 {
     /**
      * @Route("/learn")
      */
     public function learn(): Response
     {
-        return new Response('time to learn!');
+        return $this->render('learn.html.twig');
     }
 }
