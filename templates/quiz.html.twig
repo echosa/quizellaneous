@@ -2,6 +2,10 @@
 
 {% block body %}
     <h3>Quiz Time!</h3>
+
+    {% for question in questions %}
+        <div>{{ question.question }}</div>
+    {% endfor %}
 {% endblock %}
 
 {% block title %}
